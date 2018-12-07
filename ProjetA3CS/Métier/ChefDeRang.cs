@@ -30,6 +30,8 @@ namespace Métier
             TableSelect.grpClient = groupeClient;
             groupeClient.TableSelected = TableSelect;
             groupeClient.WaitAssignment = false;
+            groupeSelected = groupeClient;
+            GiveMenu();
         }
 
         public bool IsTablesFree(GroupeClient groupeClient)
@@ -58,6 +60,7 @@ namespace Métier
         {
             groupeSelected.HaveMenu = true;
             ClientWithMenu.Add(groupeSelected);
+            
         }
     }
 }

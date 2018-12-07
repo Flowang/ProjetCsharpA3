@@ -8,6 +8,7 @@ namespace Métier
 {
     public class Restaurant
     {
+        public int count { get; set; }
         MaitreHotel maitrehotel;
 
         public List<ChefDeRang> ListChefsRang { get; set; }
@@ -49,7 +50,7 @@ namespace Métier
 
         public void GrpClientArrive()
         {
-            GroupeClient groupeClient = new GroupeClient();
+            GroupeClient groupeClient = new GroupeClient(count++);
             maitrehotel.Welcomegroup(groupeClient, WaitingLine);
         }
         // Table avec nbr de place et Une liste de Client
