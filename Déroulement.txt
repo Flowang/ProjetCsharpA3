@@ -1,0 +1,48 @@
+-Groupe de Client arrive
+-Si il y a plus de place -> Gpc vont dans la file d'attente
+-Si il y a de la place
+-Maitre hotel -> Check les carré pour savoir si il y a un chef de rang disponible
+-Si un chef de rang est disponible, le chef de rang check si il a une table de disponible pour gpc
+-Table disponible-> Chef de rang installe le gpc à leurs table.
+-Chef de rang laisse 5min entre le placement et la prise des commandes.
+-> Délai des 5 min la commande est prise et envoyé au chef de cuisine.
+->Serveur dépose eau et pain sur la table
+->Cdr wait comptoir
+-Commande préparé = Se déplace pour la servir.
+
+-Entrée = 15min
+->Débarasse
+-Plats = 25min
+->Débarasse
+-Dessert = 10min
+->Débarasse vers comptoir vaisselle
+->Débarasse 5couverts max à la fois
+->Débarasser table fin repas -> 2' pour 4pers
+->Dresse la talbe -> 3' pour 4pers
+Fin de repas = 7' pour accueillir à nouveau.
+->Gpc addition = 2'
+
+
+Cuisine 
+ChefCuisine -> Met de l'ordre dans les commandes et indique les quantité à faire aux chef de partie
+Check stock journée/commande faites pour rayer sur la carte.
+
+Cuisinier= Découpe les recettes en #taches. !!!Limite de couverts
+Tous les plats de la table doit être prêt pour partir en salle(Dépot de 15 plats max)
+
+Commis= Eplucher les légumes -> Chercher les ingrédients
+Aller retour entre Cuisinier et Comptoir
+
+Plongeur= Aller retour-> Comptoir vaisselle sale -> Machine à laver.
+
+
+
+-Si il y a plus de place -> Gpc vont dans la file d'attente
+
+
+
+Restaurant->40Cartes
+Restaurant->50 assiette pour le menu du jour
+Restaurant->
+Restaurant->
+Table de +6 pers = x2eau x2pain
