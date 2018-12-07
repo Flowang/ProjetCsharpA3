@@ -11,7 +11,9 @@ namespace Métier
         public Carre CarreAttribue { get; set; }
         GroupeClient groupeSelected;
         List<GroupeClient> ClientWithMenu = new List<GroupeClient>();
-
+        /// <summary>
+        /// 
+        /// </summary>
         Table TableSelect;
         public bool IsFree
         {
