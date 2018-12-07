@@ -13,9 +13,10 @@ namespace Métier
         public Table TableSelected { get; set; }
         public bool WaitAssignment { get; set; }
         public bool HaveMenu { get; set; }
+        public int ID { get; set; }
 
 
-        public GroupeClient()
+        public GroupeClient(int id)
         {
             int random = new Random().Next(1, 10);
             clients = new List<Client>();
