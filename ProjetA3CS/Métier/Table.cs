@@ -8,6 +8,7 @@ namespace Métier
 {
     public class Table
     {
+
         public int NbrPlace;
         public GroupeClient grpClient;
         public bool IsFree
@@ -22,5 +23,7 @@ namespace Métier
         {
             NbrPlace = nbrPlace;
         }
+
+
     }
 }

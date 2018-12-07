@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Métier
 {
-    class MaitreHotel : Personnel
+    class MaitreHotel : RestaurantElement
     {
         Restaurant RestaurantAssos;
         List<Carre> ListCarres;
         public List<GroupeClient> FileAttente { get; set; }
-        
+
 
 
         public MaitreHotel(Restaurant resto, List<Carre> Carres)
@@ -24,19 +24,22 @@ namespace Métier
         {
         }
 
-        public void Welcomegroup(GroupeClient groupeClient, List<GroupeClient> Attente, List<GroupeClient> Installed)
+        public void Welcomegroup(GroupeClient groupeClient, List<GroupeClient> WaitingLine)
         {
-            foreach(var carre in ListCarres)
+            bool PlaceFinded = false;
+            foreach (var carre in ListCarres)
             {
-                if(carre.ChefRang.IsFree)
+                if (carre.ChefRang.IsFree && !PlaceFinded)
                 {
-                    if(carre.ChefRang.IsTablesFree(groupeClient))
+                    if (carre.ChefRang.IsTablesFree(groupeClient))
                     {
                         carre.ChefRang.AssignTable(groupeClient);
-                        Attente.Add
+                        PlaceFinded = true;
                     }
                 }
             }
+            if (!PlaceFinded)
+                WaitingLine.Add(groupeClient);
         }
     }
 }

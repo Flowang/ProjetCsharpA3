@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Métier
 {
-    public class Client : Personnel
+    public class Client : RestaurantElement
     {
 
-        public GroupeClient NomGroupe { get; private set; }
-        
+        public GroupeClient AssociateGroupe { get; private set; }
+
 
         public override void Tick()
         {
@@ -19,7 +19,7 @@ namespace Métier
 
         public Client(GroupeClient nomGroupe)
         {
-            this.NomGroupe = nomGroupe;
+            this.AssociateGroupe = nomGroupe;
         }
     }
 }

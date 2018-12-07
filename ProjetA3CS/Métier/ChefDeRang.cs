@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Métier
 {
-    public class ChefDeRang : Personnel
+    public class ChefDeRang : RestaurantElement
     {
         public Carre CarreAttribue { get; set; }
         GroupeClient groupeSelected;
-        Table TableSelect; 
+        List<GroupeClient> ClientWithMenu = new List<GroupeClient>();
+
+        Table TableSelect;
         public bool IsFree
         {
             get
@@ -25,23 +27,37 @@ namespace Métier
 
         public void AssignTable(GroupeClient groupeClient)
         {
-            TableSelect.grpClient = groupeClient; 
+            TableSelect.grpClient = groupeClient;
+            groupeClient.TableSelected = TableSelect;
+            groupeClient.WaitAssignment = false;
         }
 
         public bool IsTablesFree(GroupeClient groupeClient)
         {
-            foreach(var rang in CarreAttribue.Rangs)
+            bool outpute = false;
+            foreach (var rang in CarreAttribue.Rangs)
             {
-                foreach(var table in rang.tables)
+                foreach (var table in rang.tables)
                 {
-                    if(table.IsFree && table.NbrPlace >= groupeClient.clients.Count)
+                    if (table.IsFree && table.NbrPlace >= groupeClient.clients.Count)
                     {
-                        TableSelect = table; 
-                        return true; 
+                        if (TableSelect == null)
+                        {
+                            TableSelect = table;
+                        }
+                        if (table.NbrPlace < TableSelect.NbrPlace)
+                            TableSelect = table;
+                        outpute = true;
                     }
                 }
             }
-            return false; 
+            return outpute;
+        }
+
+        public void GiveMenu()
+        {
+            groupeSelected.HaveMenu = true;
+            ClientWithMenu.Add(groupeSelected);
         }
     }
 }

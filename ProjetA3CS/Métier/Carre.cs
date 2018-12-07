@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Métier
 {
-    
-    public class Carre 
+
+    public class Carre
     {
         public List<Rang> Rangs;
 

@@ -10,11 +10,11 @@ namespace Métier
     {
         MaitreHotel maitrehotel;
 
-        List<ChefDeRang> ListChefsRang; 
+        public List<ChefDeRang> ListChefsRang { get; set; }
 
-        List<Carre> ListCarres; // Liste de carré
+        public List<Carre> ListCarres; // Liste de carré
 
-        List<GroupeClient> GroupeClients = new List<GroupeClient>(); // Liste de Groupe Client
+        public List<GroupeClient> WaitingLine { get; set; } = new List<GroupeClient>();
 
         List<GroupeClient> InstalledClient = new List<GroupeClient>();
 
@@ -45,11 +45,12 @@ namespace Métier
         {
 
         }
-        
 
-        public void GrpClientArrive(GroupeClient groupeClient)
+
+        public void GrpClientArrive()
         {
-            maitrehotel.Welcomegroup(groupeClient);
+            GroupeClient groupeClient = new GroupeClient();
+            maitrehotel.Welcomegroup(groupeClient, WaitingLine);
         }
         // Table avec nbr de place et Une liste de Client
 
@@ -64,6 +65,6 @@ namespace Métier
         //Chef de rang plus dispo
         //Resto Complet
         //
-      
+
     }
 }
