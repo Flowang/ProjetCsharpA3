@@ -46,6 +46,8 @@
     <Compile Include="Mobilier_Salle\Comptoir.cs" />
     <Compile Include="Personnel_Salle\ChefDeRang.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="Commande.cs" />
+    <Compile Include="Commis.cs" />
     <Compile Include="GroupeClient.cs" />
     <Compile Include="Personnel_Salle\Commis.cs" />
     <Compile Include="Personnel_Salle\MaitreHotel.cs" />
