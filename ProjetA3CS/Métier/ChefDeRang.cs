@@ -13,6 +13,7 @@ namespace Métier
         List<GroupeClient> ClientWithMenu = new List<GroupeClient>();
         /// <summary>
         /// 
+        /// xxxxxxx
         /// </summary>
         Table TableSelect;
         public bool IsFree
