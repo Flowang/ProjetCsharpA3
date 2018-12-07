@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Métier.Mobilier_Salle;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,8 @@ namespace Métier
         public int count { get; set; }
         MaitreHotel maitrehotel;
 
+        public Comptoir Comptoir { get; set; }
+
         public List<ChefDeRang> ListChefsRang { get; set; }
 
         public List<Carre> ListCarres; // Liste de carré
@@ -22,6 +25,7 @@ namespace Métier
 
         public Restaurant()
         {
+            Comptoir = new Comptoir(); 
             ChefDeRang chefRang1 = new ChefDeRang();
             ChefDeRang chefRang2 = new ChefDeRang();
 

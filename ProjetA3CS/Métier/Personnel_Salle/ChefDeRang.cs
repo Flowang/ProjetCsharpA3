@@ -11,11 +11,15 @@ namespace Métier
         public Carre CarreAttribue { get; set; }
         GroupeClient groupeSelected;
         List<GroupeClient> ClientWithMenu = new List<GroupeClient>();
-        /// <summary>
-        /// 
-        /// 
-        /// Louis
-        /// </summary>
+
+        //ChefCuisine ChefCuisine
+
+
+        public ChefDeRang(/*ChefCuisine chefcuisine*/)
+        {
+            /*ChefCuisine = chefCuisine;*/
+        }
+
         Table TableSelect;
         public bool IsFree
         {
@@ -59,6 +63,8 @@ namespace Métier
             }
             return outpute;
         }
+
+        //public void GiveCommmand(Coma)
 
         public void GiveMenu()
         {
