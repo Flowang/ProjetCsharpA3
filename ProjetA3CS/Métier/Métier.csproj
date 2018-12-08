@@ -42,11 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commande.cs" />
+    <Compile Include="Ingredient.cs" />
     <Compile Include="Lieux_Salle\Carre.cs" />
     <Compile Include="Mobilier_Salle\Comptoir.cs" />
+    <Compile Include="Mobilier_Salle\WashingMachine.cs" />
     <Compile Include="Personnel_Salle\ChefDeRang.cs" />
     <Compile Include="Client.cs" />
-    <Compile Include="Commande.cs" />
     <Compile Include="Commis.cs" />
     <Compile Include="GroupeClient.cs" />
     <Compile Include="Personnel_Salle\Commis.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="RestoBuilder.cs" />
     <Compile Include="RestoFactory.cs" />
     <Compile Include="Lieux_Salle\Table.cs" />
+    <Compile Include="TypeRecette.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

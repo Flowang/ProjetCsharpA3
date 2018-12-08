@@ -8,5 +8,11 @@ namespace Métier
 {
     public class Commande
     {
+        public List<Recette> recettes { get; set; }
+
+        public Commande(Recette[] commande)
+        {
+            recettes = new List<Recette>(commande); 
+        }
     }
 }

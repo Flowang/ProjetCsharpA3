@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,10 @@ namespace Métier
         {
 
         }
-        public abstract void Tick();
+        public virtual void Tick()
+        {
+            Debug.WriteLine("{0} a tick", this.nom);
+        }
 
     }
 }

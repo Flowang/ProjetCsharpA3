@@ -10,7 +10,7 @@ namespace Métier
     {
         public Carre CarreAttribue { get; set; }
         GroupeClient groupeSelected;
-        List<GroupeClient> ClientWithMenu = new List<GroupeClient>();
+        public List<GroupeClient> ClientWithMenu { get; set; } = new List<GroupeClient>();
 
         //ChefCuisine ChefCuisine
 
@@ -30,7 +30,7 @@ namespace Métier
         }
         public override void Tick()
         {
-
+            
         }
 
         public void AssignTable(GroupeClient groupeClient)
@@ -64,13 +64,33 @@ namespace Métier
             return outpute;
         }
 
-        //public void GiveCommmand(Coma)
+        public void CheckReadyGroupClient()
+        {
+            foreach(var client in ClientWithMenu)
+            {
+                if(client.WaitForOrder)
+                {
+                    TakeOrders(client);
+                    break;
+                }
+            }
+        }
+
+        public void GiveCommmandCuisine()
+        {
+
+        }
+
+        private void TakeOrders(GroupeClient groupeClient)
+        {
+            Commande commande = new Commande(); 
+        }
 
         public void GiveMenu()
         {
             groupeSelected.HaveMenu = true;
             ClientWithMenu.Add(groupeSelected);
-            
+            groupeSelected = null; 
         }
     }
 }

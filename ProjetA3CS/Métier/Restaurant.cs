@@ -20,7 +20,7 @@ namespace Métier
 
         public List<GroupeClient> WaitingLine { get; set; } = new List<GroupeClient>();
 
-        List<GroupeClient> InstalledClient = new List<GroupeClient>();
+       // public  List<GroupeClient> InstalledClient { get; set; } = new List<GroupeClient>();
 
 
         public Restaurant()
@@ -48,7 +48,18 @@ namespace Métier
 
         public void TickFor(int xTemps) //Appel x time en seconde
         {
-
+            for(int i = 0; i < xTemps; i++)
+            {
+                maitrehotel.Tick(); 
+                foreach(var chefrang in ListChefsRang)
+                {
+                    chefrang.Tick(); 
+                    foreach(var group in chefrang.ClientWithMenu)
+                    {
+                        group.Tick(); 
+                    }
+                }
+            }
         }
 
 
@@ -57,6 +68,7 @@ namespace Métier
             GroupeClient groupeClient = new GroupeClient(count++);
             maitrehotel.Welcomegroup(groupeClient, WaitingLine);
         }
+
         // Table avec nbr de place et Une liste de Client
 
 

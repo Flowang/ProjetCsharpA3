@@ -37,5 +37,15 @@ namespace Tests
             }
             Assert.IsNotNull(Table);
         }
+
+        [TestMethod]
+        public void TestGiveMenu()
+        {
+            Restaurant r = new Restaurant();
+            r.GrpClientArrive();
+            Assert.IsNotNull(r.ListChefsRang[0].ClientWithMenu[0]);
+            Assert.AreEqual(true, r.ListChefsRang[0].ClientWithMenu[0].HaveMenu); 
+            
+        }
     }
 }

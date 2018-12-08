@@ -6,11 +6,7 @@ using System.Threading.Tasks;
 
 namespace Métier
 {
-    public class Recette
+    public class Ingredient
     {
-        public string Nom { get; set; }
-        public TypeRecette typeRecette { get; set; }
-
-
     }
 }
