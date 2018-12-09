@@ -10,6 +10,9 @@ namespace Métier.Mobilier_Salle
     {
         private List<Commande> Commandes; //Bout de papier
         private List<Recette> Plats; //Assiette avec le plat pref de Emilien 
+
+        public int CommandeCount { get { return Commandes.Count; } } 
+
         public Comptoir()
         {
             Plats = new List<Recette>();

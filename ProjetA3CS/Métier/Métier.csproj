@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commande.cs" />
+    <Compile Include="EtatGroupeClient.cs" />
     <Compile Include="Ingredient.cs" />
     <Compile Include="Lieux_Salle\Carre.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Mobilier_Salle\Comptoir.cs" />
     <Compile Include="Mobilier_Salle\WashingMachine.cs" />
     <Compile Include="Personnel_Salle\ChefDeRang.cs" />

@@ -14,15 +14,7 @@ namespace Métier
         public bool WaitAssignment { get; set; }
         public bool HaveMenu { get; set; }
         public int ID { get; set; }
-        public bool WaitForOrder { get
-            {
-                if(TimeSpend > 5)
-                {
-                    return true; 
-                }
-                return false; 
-            }
-        }
+        public EtatGroupeClient Etat { get; set; }
 
 
         public GroupeClient(int id)
@@ -39,9 +31,21 @@ namespace Métier
         public override void Tick()
         {
             TimeSpend++;
+            if (TimeSpend == 5 && Etat == EtatGroupeClient.ChoosingMeal)
+            {
+                Etat = EtatGroupeClient.MealChoose;
+            }
             foreach(var client in clients)
             {
                 client.Tick();
+            }
+            if(Etat == EtatGroupeClient.MealChoose)
+            {
+                foreach (var client in clients)
+                {
+                    client.ChooseRecettes();
+                    Etat = EtatGroupeClient.WaitForOrder;
+                }
             }
         }
     }

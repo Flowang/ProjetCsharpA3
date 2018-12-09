@@ -26,8 +26,8 @@ namespace Métier
         public Restaurant()
         {
             Comptoir = new Comptoir(); 
-            ChefDeRang chefRang1 = new ChefDeRang();
-            ChefDeRang chefRang2 = new ChefDeRang();
+            ChefDeRang chefRang1 = new ChefDeRang(new Menu(), this);
+            ChefDeRang chefRang2 = new ChefDeRang(new Menu(), this);
 
             Carre carre1 = new Carre(chefRang1);
             chefRang1.CarreAttribue = carre1;
@@ -51,14 +51,16 @@ namespace Métier
             for(int i = 0; i < xTemps; i++)
             {
                 maitrehotel.Tick(); 
+
                 foreach(var chefrang in ListChefsRang)
                 {
-                    chefrang.Tick(); 
-                    foreach(var group in chefrang.ClientWithMenu)
+                    chefrang.Tick();
+                    foreach (var group in chefrang.ResponsableClients)
                     {
                         group.Tick(); 
                     }
                 }
+
             }
         }
 
@@ -67,6 +69,11 @@ namespace Métier
         {
             GroupeClient groupeClient = new GroupeClient(count++);
             maitrehotel.Welcomegroup(groupeClient, WaitingLine);
+        }
+
+        public void GetCommande(Commande commande)
+        {
+            Comptoir.AddCommande(commande);
         }
 
         // Table avec nbr de place et Une liste de Client

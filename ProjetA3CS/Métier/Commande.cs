@@ -9,10 +9,15 @@ namespace Métier
     public class Commande
     {
         public List<Recette> recettes { get; set; }
+        public GroupeClient AssociateGroupe { get; set; }
 
         public Commande(Recette[] commande)
         {
             recettes = new List<Recette>(commande); 
+        }
+        public Commande()
+        {
+            recettes = new List<Recette>();
         }
     }
 }
