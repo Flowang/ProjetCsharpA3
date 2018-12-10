@@ -43,24 +43,23 @@ namespace Métier
 
         public void Tick()
         {
+            maitrehotel.Tick();
 
+            foreach (var chefrang in ListChefsRang)
+            {
+                chefrang.Tick();
+                foreach (var group in chefrang.ResponsableClients)
+                {
+                    group.Tick();
+                }
+            }
         }
 
         public void TickFor(int xTemps) //Appel x time en seconde
         {
             for(int i = 0; i < xTemps; i++)
             {
-                maitrehotel.Tick(); 
-
-                foreach(var chefrang in ListChefsRang)
-                {
-                    chefrang.Tick();
-                    foreach (var group in chefrang.ResponsableClients)
-                    {
-                        group.Tick(); 
-                    }
-                }
-
+                Tick();
             }
         }
 

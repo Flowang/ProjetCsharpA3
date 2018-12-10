@@ -9,7 +9,7 @@ namespace Métier
     public enum EtatGroupeClient
     {
         ChoosingMeal,
-        MealChoose,
+        MealChoosed,
         WaitForOrder, 
         WaitForMeal, 
         WaitFordishOut,

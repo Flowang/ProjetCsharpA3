@@ -41,7 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlackBoxCuisine.cs" />
     <Compile Include="Commande.cs" />
+    <Compile Include="Compteur.cs" />
     <Compile Include="EtatGroupeClient.cs" />
     <Compile Include="Ingredient.cs" />
     <Compile Include="Lieux_Salle\Carre.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="Personnel_Salle\MaitreHotel.cs" />
     <Compile Include="Personnel.cs" />
     <Compile Include="Personnel_Salle\Serveur.cs" />
+    <Compile Include="Plat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Lieux_Salle\Rang.cs" />
     <Compile Include="Recette.cs" />

@@ -26,26 +26,29 @@ namespace Métier
                 clients.Add(new Client(this));
             }
             WaitAssignment = true;
+            TimeSpend = new Random().Next(5, 10);
         }
 
         public override void Tick()
         {
-            TimeSpend++;
-            if (TimeSpend == 5 && Etat == EtatGroupeClient.ChoosingMeal)
+            TimeSpend--;
+            if (TimeSpend == 0 && Etat == EtatGroupeClient.ChoosingMeal)
             {
-                Etat = EtatGroupeClient.MealChoose;
+                Etat = EtatGroupeClient.MealChoosed;
             }
-            foreach(var client in clients)
-            {
-                client.Tick();
-            }
-            if(Etat == EtatGroupeClient.MealChoose)
+            
+            if(Etat == EtatGroupeClient.MealChoosed)
             {
                 foreach (var client in clients)
                 {
                     client.ChooseRecettes();
                     Etat = EtatGroupeClient.WaitForOrder;
                 }
+            }
+
+            foreach (var client in clients)
+            {
+                client.Tick();
             }
         }
     }

@@ -35,7 +35,10 @@ namespace Métier
         }
         public override void Tick()
         {
-            CheckReadyGroupClient();
+            if (CheckReadyGroupClient())
+            {
+                return;
+            }
         }
 
         public void AssignTable(GroupeClient groupeClient)
@@ -69,16 +72,17 @@ namespace Métier
             return outpute;
         }
 
-        public void CheckReadyGroupClient()
+        public bool CheckReadyGroupClient()
         {
             foreach(var client in ResponsableClients)
             {
                 if (client.Etat == EtatGroupeClient.WaitForOrder)
                 {
                     TakeOrders(client);
-                    break;
+                    return true;
                 }
             }
+            return false;
         }
 
         public void GiveCommmandCuisine(Commande commande)

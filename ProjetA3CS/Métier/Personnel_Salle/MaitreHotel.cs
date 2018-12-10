@@ -22,6 +22,7 @@ namespace Métier
 
         public override void Tick()
         {
+
         }
 
         public void Welcomegroup(GroupeClient groupeClient, List<GroupeClient> WaitingLine)
