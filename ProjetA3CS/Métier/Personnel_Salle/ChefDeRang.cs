@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Métier.Mobilier_Salle;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,13 +9,22 @@ namespace Métier
 {
     public class ChefDeRang : RestaurantElement
     {
+        private Menu menu; 
         public Carre CarreAttribue { get; set; }
         GroupeClient groupeSelected;
-        List<GroupeClient> ClientWithMenu = new List<GroupeClient>();
-        /// <summary>
-        /// 
-        /// xxxxxxx
-        /// </summary>
+        public List<GroupeClient> ResponsableClients { get; set; } = new List<GroupeClient>();
+        Restaurant restaurant;
+
+        //ChefCuisine ChefCuisine
+
+
+        public ChefDeRang(Menu Menu, Restaurant resto/*ChefCuisine chefcuisine*/)
+        {
+            restaurant = resto; 
+            menu = Menu;
+            /*ChefCuisine = chefCuisine;*/
+        }
+
         Table TableSelect;
         public bool IsFree
         {
@@ -25,7 +35,7 @@ namespace Métier
         }
         public override void Tick()
         {
-
+            CheckReadyGroupClient();
         }
 
         public void AssignTable(GroupeClient groupeClient)
@@ -59,11 +69,43 @@ namespace Métier
             return outpute;
         }
 
+        public void CheckReadyGroupClient()
+        {
+            foreach(var client in ResponsableClients)
+            {
+                if (client.Etat == EtatGroupeClient.WaitForOrder)
+                {
+                    TakeOrders(client);
+                    break;
+                }
+            }
+        }
+
+        public void GiveCommmandCuisine(Commande commande)
+        {
+            restaurant.Comptoir.AddCommande(commande);
+        }
+
+        private void TakeOrders(GroupeClient groupeClient)
+        {
+            Commande commande = new Commande(); 
+            foreach(var client in groupeClient.clients)
+            {
+                for(int i = 0; i < client.Orders.Length; i ++)
+                {
+                    commande.recettes.Add(client.Orders[i]); 
+                }
+            }
+            commande.AssociateGroupe = groupeClient;
+            GiveCommmandCuisine(commande);
+            groupeClient.Etat = EtatGroupeClient.WaitForMeal;
+        }
+
         public void GiveMenu()
         {
             groupeSelected.HaveMenu = true;
-            ClientWithMenu.Add(groupeSelected);
-            
+            ResponsableClients.Add(groupeSelected);
+            groupeSelected = null; 
         }
 
 

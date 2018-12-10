@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Métier.Mobilier_Salle;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,19 +12,22 @@ namespace Métier
         public int count { get; set; }
         MaitreHotel maitrehotel;
 
+        public Comptoir Comptoir { get; set; }
+
         public List<ChefDeRang> ListChefsRang { get; set; }
 
         public List<Carre> ListCarres; // Liste de carré
 
         public List<GroupeClient> WaitingLine { get; set; } = new List<GroupeClient>();
 
-        List<GroupeClient> InstalledClient = new List<GroupeClient>();
+       // public  List<GroupeClient> InstalledClient { get; set; } = new List<GroupeClient>();
 
 
         public Restaurant()
         {
-            ChefDeRang chefRang1 = new ChefDeRang();
-            ChefDeRang chefRang2 = new ChefDeRang();
+            Comptoir = new Comptoir(); 
+            ChefDeRang chefRang1 = new ChefDeRang(new Menu(), this);
+            ChefDeRang chefRang2 = new ChefDeRang(new Menu(), this);
 
             Carre carre1 = new Carre(chefRang1);
             chefRang1.CarreAttribue = carre1;
@@ -44,7 +48,20 @@ namespace Métier
 
         public void TickFor(int xTemps) //Appel x time en seconde
         {
+            for(int i = 0; i < xTemps; i++)
+            {
+                maitrehotel.Tick(); 
 
+                foreach(var chefrang in ListChefsRang)
+                {
+                    chefrang.Tick();
+                    foreach (var group in chefrang.ResponsableClients)
+                    {
+                        group.Tick(); 
+                    }
+                }
+
+            }
         }
 
 
@@ -53,6 +70,12 @@ namespace Métier
             GroupeClient groupeClient = new GroupeClient(count++);
             maitrehotel.Welcomegroup(groupeClient, WaitingLine);
         }
+
+        public void GetCommande(Commande commande)
+        {
+            Comptoir.AddCommande(commande);
+        }
+
         // Table avec nbr de place et Une liste de Client
 
 

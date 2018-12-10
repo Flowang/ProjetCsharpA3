@@ -37,5 +37,24 @@ namespace Tests
             }
             Assert.IsNotNull(Table);
         }
+
+        [TestMethod]
+        public void TestGiveMenu()
+        {
+            Restaurant r = new Restaurant();
+            r.GrpClientArrive();
+            Assert.IsNotNull(r.ListChefsRang[0].ResponsableClients[0]);
+            Assert.AreEqual(true, r.ListChefsRang[0].ResponsableClients[0].HaveMenu); 
+        }
+
+        [TestMethod]
+        public void OrderTaking()
+        {
+            Restaurant r = new Restaurant();
+            r.GrpClientArrive();
+            r.TickFor(20);
+            Assert.AreEqual(r.Comptoir.CommandeCount, 1);
+            Assert.AreEqual(r.ListChefsRang[0].ResponsableClients[0].Etat, EtatGroupeClient.WaitForMeal);
+        }
     }
 }

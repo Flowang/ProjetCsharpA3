@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Métier;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,12 +15,16 @@ namespace ProjetA3CS
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-            //
-            //
-            //coucou
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1());
+            ////
+            ////
+            ////coucou
+            ///
+            Restaurant r = new Restaurant();
+            r.GrpClientArrive();
+            r.TickFor(7);
         }
     }
 }
