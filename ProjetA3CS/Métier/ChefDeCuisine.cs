@@ -9,13 +9,10 @@ namespace Métier
     public class ChefDeCuisine
     {
 
+        public List<Commande> ListeDesCommandes;
+        
 
-
-
-
-
-
-        public void GetCommand(List<Commande> commandes)
+        public void GetCommand()
         {
 
         }

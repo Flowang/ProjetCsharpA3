@@ -8,6 +8,7 @@ namespace Métier
 {
     public class Client : RestaurantElement
     {
+        public int id;
 
         public GroupeClient AssociateGroupe { get; private set; }
 
