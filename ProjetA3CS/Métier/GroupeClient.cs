@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +36,7 @@ namespace Métier
             if (TimeSpend == 0 && Etat == EtatGroupeClient.ChoosingMeal)
             {
                 Etat = EtatGroupeClient.MealChoosed;
+                Debug.WriteLine("Les clients on choisi !");
             }
             
             if(Etat == EtatGroupeClient.MealChoosed)

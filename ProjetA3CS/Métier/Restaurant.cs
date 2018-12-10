@@ -1,8 +1,10 @@
 ﻿using Métier.Mobilier_Salle;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Métier
@@ -43,6 +45,7 @@ namespace Métier
 
         public void Tick()
         {
+            Debug.WriteLine("Tick...");
             maitrehotel.Tick();
 
             foreach (var chefrang in ListChefsRang)
@@ -60,6 +63,7 @@ namespace Métier
             for(int i = 0; i < xTemps; i++)
             {
                 Tick();
+                Thread.Sleep(1000);
             }
         }
 

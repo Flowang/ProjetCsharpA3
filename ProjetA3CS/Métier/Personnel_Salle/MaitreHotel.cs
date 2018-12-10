@@ -30,7 +30,7 @@ namespace Métier
             bool PlaceFinded = false;
             foreach (var carre in ListCarres)
             {
-                if (carre.ChefRang.IsFree && !PlaceFinded)
+                if (carre.ChefRang.Etat == EtatChefRang.Free && !PlaceFinded)
                 {
                     if (carre.ChefRang.IsTablesFree(groupeClient))
                     {
