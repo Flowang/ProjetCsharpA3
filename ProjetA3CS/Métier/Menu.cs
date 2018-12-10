@@ -8,16 +8,35 @@ namespace Métier
 {
     public class Menu
     {
-        public List<Recette> Entree { get; set; }
+        public List<Recette> Entrees { get; set; }
 
         public List<Recette> Plat { get; set; }
 
-        public List<Recette> Dessert { get; set; }
+        public List<Recette> Desserts { get; set; }
 
         public Menu()
         {
-            // Remplir les trois listes ici 
-            //Pourquoi pas le faire depuis la base de données pour pouvoir modifier le menu si besoin
+            Entrees = new List<Recette>();
+            {
+
+            }
+            Desserts = new List<Recette>()
+            {
+                new Recette("Boule de glace au chocolat") {typeRecette = TypeRecette.Dessert },
+                new Recette("Boule de glace a la vanille") {typeRecette = TypeRecette.Dessert },
+                new Recette("Boule de glace a la pistache") {typeRecette = TypeRecette.Dessert },
+                new Recette("Boule de glace au caramel") {typeRecette = TypeRecette.Dessert },
+                new Recette("Boule de glace a la fraise") {typeRecette = TypeRecette.Dessert },
+                new Recette("Boule de glace a la framboise") {typeRecette = TypeRecette.Dessert },
+                new Recette("Boule de glace au nougat") {typeRecette = TypeRecette.Dessert },
+                new Recette("Boule de glace a la pêche") {typeRecette = TypeRecette.Dessert },
+                new Recette("Boule de glace a la banane") {typeRecette = TypeRecette.Dessert },
+                new Recette("Boule de glace aux oreos") {typeRecette = TypeRecette.Dessert },
+                new Recette("Boule de glace au kitkat") {typeRecette = TypeRecette.Dessert },
+                new Recette("Boule de glace au bounty") {typeRecette = TypeRecette.Dessert }
+            };
         }
     }
 }
+
+

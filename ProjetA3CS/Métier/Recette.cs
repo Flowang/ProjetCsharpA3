@@ -11,6 +11,14 @@ namespace Métier
         public string Nom { get; set; }
         public TypeRecette typeRecette { get; set; }
 
-
+        public Recette()
+        {
+                
+        }
+        public Recette(string nom)
+        {
+            this.Nom = nom;       
+        }
+            
     }
 }
