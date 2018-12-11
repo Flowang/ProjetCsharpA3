@@ -8,18 +8,18 @@ namespace Métier.Mobilier_Salle
 {
     public class Comptoir
     {
-        private List<Commande> Commandes; //Bout de papier
-        private List<Recette> Plats; //Assiette avec le plat pref de Emilien 
+        public List<Commande> Commandes; //Bout de papier
+        public List<Plat> Plats; //Assiette avec le plat pref de Emilien 
 
         public int CommandeCount { get { return Commandes.Count; } } 
 
         public Comptoir()
         {
-            Plats = new List<Recette>();
+            Plats = new List<Plat>();
             Commandes = new List<Commande>(); 
         }
 
-        public void AddPlat(Recette plat)
+        public void AddPlat(Plat plat)
         {
             Plats.Add(plat); 
         }
