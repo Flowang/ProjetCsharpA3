@@ -38,8 +38,15 @@ namespace Métier.Cuisine
                      Desserts.Add(commande.recettes[i]);
                     }
             }
-            Plat entree = new Plat(Entrees[0], commande.AssociateGroupe);
-                
+            Plat entree   = new Plat(Entrees, commande.AssociateGroupe);
+            Plat plat     = new Plat(Plats, commande.AssociateGroupe);
+            Plat dessert = new Plat(Desserts, commande.AssociateGroupe);
+
+            Comptoir.AddPlat(entree);
+            Comptoir.AddPlat(plat);
+            Comptoir.AddPlat(dessert);
+
+
         }
     }
 }
