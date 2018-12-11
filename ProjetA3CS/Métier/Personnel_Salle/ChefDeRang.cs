@@ -9,7 +9,6 @@ namespace Métier
 {
     public class ChefDeRang : RestaurantElement
     {
-        private Menu menu; 
         public Carre CarreAttribue { get; set; }
         GroupeClient groupeSelected;
         public List<GroupeClient> ResponsableClients { get; set; } = new List<GroupeClient>();
@@ -18,10 +17,9 @@ namespace Métier
         //ChefCuisine ChefCuisine
 
 
-        public ChefDeRang(Menu Menu, Restaurant resto/*ChefCuisine chefcuisine*/)
+        public ChefDeRang(Restaurant resto/*ChefCuisine chefcuisine*/)
         {
             restaurant = resto; 
-            menu = Menu;
             /*ChefCuisine = chefCuisine;*/
         }
 

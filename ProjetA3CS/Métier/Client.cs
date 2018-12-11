@@ -12,7 +12,6 @@ namespace Métier
 
         public GroupeClient AssociateGroupe { get; private set; }
         public Recette[] Orders { get; set; } = new Recette[3];
-        public Menu mennu { get; set; }
 
 
         public override void Tick()

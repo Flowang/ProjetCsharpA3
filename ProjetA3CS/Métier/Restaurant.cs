@@ -26,8 +26,8 @@ namespace Métier
         public Restaurant()
         {
             Comptoir = new Comptoir(); 
-            ChefDeRang chefRang1 = new ChefDeRang(new Menu(), this);
-            ChefDeRang chefRang2 = new ChefDeRang(new Menu(), this);
+            ChefDeRang chefRang1 = new ChefDeRang( this);
+            ChefDeRang chefRang2 = new ChefDeRang( this);
 
             Carre carre1 = new Carre(chefRang1);
             chefRang1.CarreAttribue = carre1;
