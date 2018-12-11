@@ -1,4 +1,5 @@
-﻿using Métier.Mobilier_Salle;
+﻿using Métier.Cuisine;
+using Métier.Mobilier_Salle;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,7 +23,9 @@ namespace Métier
 
         public List<GroupeClient> WaitingLine { get; set; } = new List<GroupeClient>();
 
-       // public  List<GroupeClient> InstalledClient { get; set; } = new List<GroupeClient>();
+        ChefDeCuisine chefdecuisine = new ChefDeCuisine();
+
+        // public  List<GroupeClient> InstalledClient { get; set; } = new List<GroupeClient>();
 
 
         public Restaurant()
@@ -56,6 +59,7 @@ namespace Métier
                     group.Tick();
                 }
             }
+            chefdecuisine.Tick();
         }
 
         public void TickFor(int xTemps) //Appel x time en seconde
