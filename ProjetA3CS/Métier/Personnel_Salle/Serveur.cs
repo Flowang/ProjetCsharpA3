@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Métier.Personnel_Salle
 {
-    class Serveur
+    public class Serveur
     {
     }
 }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Métier
 {
-    public class Menu
+    static public class Menu
     {
-        public List<Recette> Entrees { get; set; }
+        static public List<Recette> Entrees { get; set; }
 
-        public List<Recette> Plat { get; set; }
+        static public List<Recette> Plat { get; set; }
 
-        public List<Recette> Desserts { get; set; }
+        static public List<Recette> Desserts { get; set; }
 
         public Menu()
         {

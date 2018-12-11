@@ -31,6 +31,8 @@ namespace Métier
             Orders[1] = new Recette() { Nom = "Marguerita", typeRecette = TypeRecette.Plat };
             Orders[2] = new Recette() { Nom = "Boule_Vanille", typeRecette = TypeRecette.Dessert };
 
+
+
             // A Remplacer par des mothodes pour piocher randomly dans le menu
         }
 
