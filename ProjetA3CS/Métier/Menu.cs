@@ -6,22 +6,14 @@ using System.Threading.Tasks;
 
 namespace Métier
 {
-    public class Menu
+    static public class Menu
     {
-        public List<Recette> Entrees { get; set; }
+        static public List<Recette> Entrees { get; set; }
 
-        public List<Recette> Plat { get; set; }
+        static public List<Recette> Plat { get; set; }
 
-        public List<Recette> Desserts { get; set; }
-
-        public Menu()
+        static public List<Recette> Desserts { get; set; } = new List<Recette>()
         {
-            Entrees = new List<Recette>();
-            {
-
-            }
-            Desserts = new List<Recette>()
-            {
                 new Recette("Boule de glace au chocolat") {typeRecette = TypeRecette.Dessert },
                 new Recette("Boule de glace a la vanille") {typeRecette = TypeRecette.Dessert },
                 new Recette("Boule de glace a la pistache") {typeRecette = TypeRecette.Dessert },
@@ -34,9 +26,8 @@ namespace Métier
                 new Recette("Boule de glace aux oreos") {typeRecette = TypeRecette.Dessert },
                 new Recette("Boule de glace au kitkat") {typeRecette = TypeRecette.Dessert },
                 new Recette("Boule de glace au bounty") {typeRecette = TypeRecette.Dessert }
-            };
-        }
-    }
+        };
+    } 
 }
 
 
