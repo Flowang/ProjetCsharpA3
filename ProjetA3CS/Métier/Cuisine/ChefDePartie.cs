@@ -8,9 +8,10 @@ using Métier.Mobilier_Salle;
 
 namespace Métier.Cuisine
 {
-    public class ChefDePartie
+    public class ChefDePartie : RestaurantElement
     {
         Comptoir Comptoir;
+        ChefDeCuisine chefdecuisine;
 
         public List<Recette> Entrees; //Bout de papier
         public List<Recette> Plats; //Assiette avec le plat pref de Emilien 
@@ -21,8 +22,9 @@ namespace Métier.Cuisine
         {
             this.Comptoir = comptoir;
         }
-        public void CommandToPlat(Commande commande)
+        public void GetCommand(Commande commande)
         {
+            
             for(int i = 0; i <= 3; i++)
             {
                if(commande.recettes[i].typeRecette == TypeRecette.Entree)
@@ -38,14 +40,17 @@ namespace Métier.Cuisine
                      Desserts.Add(commande.recettes[i]);
                     }
             }
-            Plat entree   = new Plat(Entrees, commande.AssociateGroupe);
-            Plat plat     = new Plat(Plats, commande.AssociateGroupe);
+            Plat entree = new Plat(Entrees, commande.AssociateGroupe);
+            Plat plat = new Plat(Plats, commande.AssociateGroupe);
             Plat dessert = new Plat(Desserts, commande.AssociateGroupe);
 
             Comptoir.AddPlat(entree);
             Comptoir.AddPlat(plat);
             Comptoir.AddPlat(dessert);
+        }
 
+        public override void Tick()
+        {
 
         }
     }

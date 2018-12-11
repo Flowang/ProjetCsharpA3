@@ -10,12 +10,24 @@ namespace Métier.Cuisine
 {
     public class ChefDeCuisine : RestaurantElement
     {
-
+        ChefDePartie chefparti;
+        Comptoir comptoir;
+        public ChefDeCuisine(Comptoir Comptoir)
+        {
+            this.comptoir = Comptoir;
+        }
+        
+        public void TransferCommand()
+        {
+            var CommandeActuelle = comptoir.TakeCommande();
+            chefparti.GetCommand(CommandeActuelle);
+        }
         public override void Tick()
         {
-            Comptoir c = new Comptoir();
-            var CommandeActuelle = c.TakeCommande();
-            
+             
+             TransferCommand();
         }
+
+        
     }
 }
