@@ -16,6 +16,8 @@ namespace Métier
     }
     public class ChefDeRang : RestaurantElement
     {
+
+        Compteur compteur;
         public Carre CarreAttribue { get; set; }
         GroupeClient groupeSelected;
         public List<GroupeClient> ResponsableClients { get; set; } = new List<GroupeClient>();
