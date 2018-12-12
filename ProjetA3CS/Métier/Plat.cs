@@ -11,7 +11,7 @@ namespace Métier
         public Compteur compteur { get; set; }
         public List<Recette> recette { get; set; }
         public GroupeClient GroupeClient;
-        public Plat(List<Recette> re, GroupeClient groupeClient)
+        public Plat(List<Recette> re, GroupeClient groupeClient, Compteur time)
         {
             GroupeClient = groupeClient;
             compteur = time; 

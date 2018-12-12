@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Métier
 {
+
+   
+
     static public class Menu
     {
+
+    
         static public List<Recette> Entrees { get; set; } = new List<Recette>()
         {
                 new Recette("Salade niçoise") {typeRecette = TypeRecette.Entree },
@@ -55,7 +60,7 @@ namespace Métier
                 new Recette("Boule de glace au kitkat") {typeRecette = TypeRecette.Dessert },
                 new Recette("Boule de glace au bounty") {typeRecette = TypeRecette.Dessert }
         };
-    } 
+    }
 }
 
 
