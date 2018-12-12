@@ -13,8 +13,8 @@ namespace Métier.Cuisine
         Comptoir Comptoir;
         ChefDeCuisine chefdecuisine;
 
-        public List<Recette> Entrees; //Bout de papier
-        public List<Recette> Plats; //Assiette avec le plat pref de Emilien 
+        public List<Recette> Entrees; // papier avec marqué les entrées à faire
+        public List<Recette> Plats;  
         public List<Recette> Desserts;
 
 
@@ -29,7 +29,7 @@ namespace Métier.Cuisine
             {
                if(commande.recettes[i].typeRecette == TypeRecette.Entree)
                     {
-                    Entrees.Add(commande.recettes[i]);
+                    Entrees.Add(commande.recettes[i]);// On traite la nouvelle commande en séparant en trois les recettes liées à cette commande                
                     }
                if (commande.recettes[i].typeRecette == TypeRecette.Plat)
                     {
@@ -40,11 +40,12 @@ namespace Métier.Cuisine
                      Desserts.Add(commande.recettes[i]);
                     }
             }
-            Plat entree = new Plat(Entrees, commande.AssociateGroupe);
-            Plat plat = new Plat(Plats, commande.AssociateGroupe);
-            Plat dessert = new Plat(Desserts, commande.AssociateGroupe);
+            // On prépare les entrées notées sur le papier
+             Plat entree = new Plat(Entrees, commande.AssociateGroupe, commande.recettes[i].TempsPreparation);
+             Plat plat = new Plat(Plats, commande.AssociateGroupe);
+             Plat dessert = new Plat(Desserts, commande.AssociateGroupe);
 
-            Comptoir.AddPlat(entree);
+            Comptoir.AddPlat(entree); // on envoit les entrées préparés au comptoir
             Comptoir.AddPlat(plat);
             Comptoir.AddPlat(dessert);
         }
