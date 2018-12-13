@@ -17,9 +17,10 @@ namespace Métier
         {
                 
         }
-        public Recette(string nom)
+        public Recette(string nom, int tempspreparation)
         {
-            this.Nom = nom;       
+            this.Nom = nom;
+            this.TempsPreparation = tempspreparation;
         }
             
     }

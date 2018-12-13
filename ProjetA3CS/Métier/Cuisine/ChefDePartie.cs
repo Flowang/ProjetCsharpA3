@@ -46,14 +46,12 @@ namespace Métier.Cuisine
                     Plat plat = new Plat(Plats, commande.AssociateGroupe, new Compteur() { Time = commande.recettes[i].TempsPreparation });
                     Plats.Add(commande.recettes[i]);
                     PlataCuisiner.Add(plat);
-
                 }
                 if (commande.recettes[i].typeRecette == TypeRecette.Dessert)
                     {
                     Plat dessert = new Plat(Desserts, commande.AssociateGroupe, new Compteur() { Time = commande.recettes[i].TempsPreparation });
                     Desserts.Add(commande.recettes[i]);
                     PlataCuisiner.Add(dessert);
-
                 }
             }
             // On prépare les entrées notées sur le papier
