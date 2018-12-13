@@ -9,7 +9,8 @@ namespace Métier
 {
     public class GroupeClient : RestaurantElement
     {
-        public int TimeSpend { get; private set; }
+        public TypeRecette CurrentPlat { get; set; }
+        public Compteur compteur { get; private set; }
         public List<Client> clients { get; set; }
         public Table TableSelected { get; set; }
         public bool WaitAssignment { get; set; }
@@ -27,13 +28,13 @@ namespace Métier
                 clients.Add(new Client(this));
             }
             WaitAssignment = true;
-            TimeSpend = new Random().Next(5, 10);
+            compteur = new Compteur() { Time = new Random().Next(5, 10) };
         }
 
         public override void Tick()
         {
-            TimeSpend--;
-            if (TimeSpend == 0 && Etat == EtatGroupeClient.ChoosingMeal)
+            compteur.Tick();
+            if (compteur.Time == 0 && Etat == EtatGroupeClient.ChoosingMeal)
             {
                 Etat = EtatGroupeClient.MealChoosed;
                 Debug.WriteLine("Les clients on choisi !");

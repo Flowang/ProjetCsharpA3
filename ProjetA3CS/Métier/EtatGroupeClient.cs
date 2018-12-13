@@ -12,6 +12,7 @@ namespace Métier
         MealChoosed,
         WaitForOrder, 
         WaitForMeal, 
+        Eating, 
         WaitFordishOut,
         WaitForPayement, 
         Leaving, 

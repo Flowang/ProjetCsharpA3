@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Métier
 {
     public class Client : RestaurantElement
@@ -26,13 +27,15 @@ namespace Métier
 
         public void ChooseRecettes()
         {
-            Orders[0] = new Recette() { Nom = "Melon", typeRecette = TypeRecette.Entree };
-            Orders[1] = new Recette() { Nom = "Marguerita", typeRecette = TypeRecette.Plat };
-            Orders[2] = new Recette() { Nom = "Boule_Vanille", typeRecette = TypeRecette.Dessert };
+            //Orders[0] = new Recette() { Nom = "Melon", typeRecette = TypeRecette.Entree };
+            //Orders[1] = new Recette() { Nom = "Marguerita", typeRecette = TypeRecette.Plat };
+            //Orders[2] = new Recette() { Nom = "Boule_Vanille", typeRecette = TypeRecette.Dessert };
 
+            Random rnd = new Random();
+            Orders[0] = new Recette() { Nom = Menu.Entrees[rnd.Next(1,11)].Nom, typeRecette = TypeRecette.Entree };
+            Orders[1] = new Recette() { Nom = Menu.Plat[rnd.Next(1, 11)].Nom , typeRecette = TypeRecette.Plat };
+            Orders[2] = new Recette() { Nom = Menu.Desserts[rnd.Next(1, 11)].Nom, typeRecette = TypeRecette.Dessert };
 
-
-            // A Remplacer par des mothodes pour piocher randomly dans le menu
         }
 
         public Recette[] Order()

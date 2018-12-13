@@ -10,6 +10,9 @@ namespace Métier
     {
         public string Nom { get; set; }
         public TypeRecette typeRecette { get; set; }
+
+        public int TempsPreparation { get; set; }
+
         public Recette()
         {
                 

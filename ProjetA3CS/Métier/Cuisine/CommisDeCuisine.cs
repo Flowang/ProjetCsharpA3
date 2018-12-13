@@ -4,13 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Métier
+namespace Métier.Cuisine
 {
-    public enum TypeRecette : int
+    class CommisDeCuisine
     {
-        Entree=1,
-        Plat=2,
-        Dessert=3,
-
     }
 }

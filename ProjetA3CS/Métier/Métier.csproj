@@ -44,6 +44,9 @@
     <Compile Include="BlackBoxCuisine.cs" />
     <Compile Include="Commande.cs" />
     <Compile Include="Compteur.cs" />
+    <Compile Include="Cuisine\ChefDeCuisine.cs" />
+    <Compile Include="Cuisine\ChefDePartie.cs" />
+    <Compile Include="Cuisine\CommisDeCuisine.cs" />
     <Compile Include="EtatGroupeClient.cs" />
     <Compile Include="Ingredient.cs" />
     <Compile Include="Lieux_Salle\Carre.cs" />
