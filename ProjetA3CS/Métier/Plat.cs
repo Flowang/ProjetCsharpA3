@@ -8,11 +8,12 @@ namespace Métier
 {
     public class Plat
     {
-        //public Compteur compteur { get; set; }
+        public Compteur compteur { get; set; }
         public List<Recette> recette { get; set; }
         public GroupeClient GroupeClient;
-        public Plat(List<Recette> re, GroupeClient groupeClient)
+        public Plat(List<Recette> re, GroupeClient groupeClient, Compteur Time)
         {
+            compteur = Time;
             GroupeClient = groupeClient;
             recette = re; 
         }

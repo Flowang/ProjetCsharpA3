@@ -23,16 +23,17 @@ namespace Métier
 
         public List<GroupeClient> WaitingLine { get; set; } = new List<GroupeClient>();
 
-        ChefDeCuisine chefdecuisine = new ChefDeCuisine();
+        ChefDeCuisine chefdecuisine;
 
-        // public  List<GroupeClient> InstalledClient { get; set; } = new List<GroupeClient>();
+        // public List<GroupeClient> InstalledClient { get; set; } = new List<GroupeClient>();
 
 
         public Restaurant()
         {
-            Comptoir = new Comptoir(); 
-            ChefDeRang chefRang1 = new ChefDeRang( this);
-            ChefDeRang chefRang2 = new ChefDeRang( this);
+            Comptoir = new Comptoir();
+            chefdecuisine = new ChefDeCuisine(Comptoir);
+            ChefDeRang chefRang1 = new ChefDeRang(this);
+            ChefDeRang chefRang2 = new ChefDeRang(this);
 
             Carre carre1 = new Carre(chefRang1);
             chefRang1.CarreAttribue = carre1;

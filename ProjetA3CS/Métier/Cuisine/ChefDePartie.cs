@@ -17,6 +17,8 @@ namespace Métier.Cuisine
         public List<Recette> Plats;  
         public List<Recette> Desserts;
 
+        List<Plat> PlataCuisiner;
+
 
         public ChefDePartie(Comptoir comptoir)
         {
@@ -28,31 +30,42 @@ namespace Métier.Cuisine
             for(int i = 0; i <= 3; i++)
             {
                if(commande.recettes[i].typeRecette == TypeRecette.Entree)
-                    {
-                    Entrees.Add(commande.recettes[i]);// On traite la nouvelle commande en séparant en trois les recettes liées à cette commande                
-                    }
+                {
+                    Entrees.Add(commande.recettes[i]);// On traite la nouvelle commande en séparant en trois les recettes liées à cette commande
+                    Plat entree = new Plat(Entrees, commande.AssociateGroupe, new Compteur() { Time = commande.recettes[i].TempsPreparation });
+                    PlataCuisiner.Add(entree);
+                }
                if (commande.recettes[i].typeRecette == TypeRecette.Plat)
                     {
+                    Plat plat = new Plat(Plats, commande.AssociateGroupe, new Compteur() { Time = commande.recettes[i].TempsPreparation });
                     Plats.Add(commande.recettes[i]);
+                    PlataCuisiner.Add(plat);
+
                 }
-               if (commande.recettes[i].typeRecette == TypeRecette.Dessert)
+                if (commande.recettes[i].typeRecette == TypeRecette.Dessert)
                     {
-                     Desserts.Add(commande.recettes[i]);
-                    }
+                    Plat dessert = new Plat(Desserts, commande.AssociateGroupe, new Compteur() { Time = commande.recettes[i].TempsPreparation });
+                    Desserts.Add(commande.recettes[i]);
+                    PlataCuisiner.Add(dessert);
+
+                }
             }
             // On prépare les entrées notées sur le papier
-             Plat entree = new Plat(Entrees, commande.AssociateGroupe, commande.recettes[i].TempsPreparation);
-             Plat plat = new Plat(Plats, commande.AssociateGroupe);
-             Plat dessert = new Plat(Desserts, commande.AssociateGroupe);
+             
 
-            Comptoir.AddPlat(entree); // on envoit les entrées préparés au comptoir
-            Comptoir.AddPlat(plat);
-            Comptoir.AddPlat(dessert);
+             // on envoit les entrées préparés au comptoir
         }
 
         public override void Tick()
         {
-
+            foreach(var plat in PlataCuisiner)
+            {
+                plat.compteur.Tick();
+                if(plat.compteur.IsOver)
+                {
+                    Comptoir.AddPlat(plat);
+                }
+            }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace Métier
         {
             if(restaurant.Comptoir.CommandeCount > 0)
             {
-                //restaurant.
+                restaurant.Comptoir.TakePlat();
             }
         }
     }

@@ -41,9 +41,12 @@ namespace Métier.Personnel_Salle
             {
                 if(comptoir.Plats.Count > 0)
                 {
-                    if(comptoir.GetGroupeFirstPlat().Etat != EtatGroupeClient.WaitFordishOut)
+                    if (comptoir.GetGroupeFirstPlat().Etat != EtatGroupeClient.WaitFordishOut)
+                    {
                         NewTask(EtatServeur.TakingPlat);
-                    return; 
+                        ToDo = GetPlat;
+                        return;
+                    }
                 }
                 foreach(var gpc in groupeClients)
                 {
@@ -56,6 +59,9 @@ namespace Métier.Personnel_Salle
                     }
                 }
             }
+
+
+            compteur.Tick();
             if(compteur.IsOver)
             {
                 ToDo.Invoke();
@@ -85,6 +91,7 @@ namespace Métier.Personnel_Salle
                 return; 
             }
             GpcToServe.Etat = EtatGroupeClient.Eating;
+            GpcToServe = PlatEnMain.GroupeClient;
         }
 
         private void NewTask(EtatServeur task)

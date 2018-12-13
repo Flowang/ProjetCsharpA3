@@ -56,5 +56,12 @@ namespace Tests
             Assert.AreEqual(r.Comptoir.CommandeCount, 1);
             Assert.AreEqual(r.ListChefsRang[0].ResponsableClients[0].Etat, EtatGroupeClient.WaitForMeal);
         }
+
+        public void TestDinner()
+        {
+            Restaurant r = new Restaurant();
+            r.GrpClientArrive();
+            r.TickFor(1000);
+        }
     }
 }
