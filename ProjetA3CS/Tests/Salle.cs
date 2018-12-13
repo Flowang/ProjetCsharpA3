@@ -61,7 +61,8 @@ namespace Tests
         {
             Restaurant r = new Restaurant();
             r.GrpClientArrive();
-            r.TickFor(1000);
+            r.TickFor(20);
+            Assert.IsTrue(r.Comptoir.TakePlat() != null );
         }
     }
 }

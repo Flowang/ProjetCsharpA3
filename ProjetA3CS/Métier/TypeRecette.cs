@@ -8,9 +8,9 @@ namespace Métier
 {
     public enum TypeRecette : int
     {
-        Entree=1,
-        Plat=2,
-        Dessert=3,
+        Entree=0,
+        Plat=1,
+        Dessert=2,
 
     }
 }

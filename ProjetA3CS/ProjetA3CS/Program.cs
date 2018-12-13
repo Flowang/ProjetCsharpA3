@@ -23,7 +23,8 @@ namespace ProjetA3CS
             ////coucou
             ///
             Restaurant r = new Restaurant();
-            r.TickFor(20);
+            r.GrpClientArrive();
+            r.TickFor(1000);
         }
     }
 }

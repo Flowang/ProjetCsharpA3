@@ -44,7 +44,7 @@ namespace Métier
                 if(compteur.IsOver)
                 {
                     Etat = EtatChefRang.Free;
-                    Debug.WriteLine("Le chef de rang est libre !");
+                    Console.WriteLine("Le chef de rang est libre !");
                     return; 
                 }
                 return;
@@ -127,14 +127,15 @@ namespace Métier
         {
             groupeSelected.HaveMenu = true;
             ResponsableClients.Add(groupeSelected);
-            groupeSelected = null; 
+            groupeSelected = null;
+            Console.WriteLine("Un menu a été donné au groupe de client");
         }
 
         private void NewTask(EtatChefRang task)
         {
             Etat = task;
             compteur = new Compteur() { Time = Convert.ToInt32(task) };
-            Debug.WriteLine("Le chef de rang fait " + Etat.ToString());
+            Console.WriteLine("Le chef de rang fait " + Etat.ToString());
         }
 
     }

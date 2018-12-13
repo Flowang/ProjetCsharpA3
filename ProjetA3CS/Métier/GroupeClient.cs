@@ -10,7 +10,7 @@ namespace Métier
     public class GroupeClient : RestaurantElement
     {
         public TypeRecette CurrentPlat { get; set; }
-        public Compteur compteur { get; private set; }
+        public Compteur compteur { get; set; }
         public List<Client> clients { get; set; }
         public Table TableSelected { get; set; }
         public bool WaitAssignment { get; set; }
@@ -37,9 +37,15 @@ namespace Métier
             if (compteur.Time == 0 && Etat == EtatGroupeClient.ChoosingMeal)
             {
                 Etat = EtatGroupeClient.MealChoosed;
-                Debug.WriteLine("Les clients on choisi !");
+                Console.WriteLine("Les clients on choisi !");
             }
             
+            if(Etat == EtatGroupeClient.Eating && compteur.Time == 0)
+            {
+                Etat = EtatGroupeClient.WaitFordishOut;
+                Console.WriteLine("On fini de manger");
+            }
+
             if(Etat == EtatGroupeClient.MealChoosed)
             {
                 foreach (var client in clients)

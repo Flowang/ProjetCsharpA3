@@ -1,5 +1,6 @@
 ﻿using Métier.Cuisine;
 using Métier.Mobilier_Salle;
+using Métier.Personnel_Salle;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,7 +26,11 @@ namespace Métier
 
         ChefDeCuisine chefdecuisine;
 
-        // public List<GroupeClient> InstalledClient { get; set; } = new List<GroupeClient>();
+        public BlackBoxCuisine blackbox { get; set; }
+
+        public Serveur serveur { get; set; }
+
+        public List<GroupeClient> InstalledClient { get; set; } = new List<GroupeClient>();
 
 
         public Restaurant()
@@ -45,6 +50,8 @@ namespace Métier
             ListCarres = new List<Carre>() { carre1, carre2 };
 
             maitrehotel = new MaitreHotel(this, ListCarres);
+            blackbox = new BlackBoxCuisine(this);
+            serveur = new Serveur(Comptoir, InstalledClient);
         }
 
         public void Tick()
@@ -60,7 +67,9 @@ namespace Métier
                     group.Tick();
                 }
             }
-            chefdecuisine.Tick();
+            //chefdecuisine.Tick();
+            blackbox.Tick();
+            serveur.Tick();
         }
 
         public void TickFor(int xTemps) //Appel x time en seconde
@@ -68,7 +77,7 @@ namespace Métier
             for(int i = 0; i < xTemps; i++)
             {
                 Tick();
-                Thread.Sleep(1000);
+                Console.ReadLine();
             }
         }
 
@@ -76,7 +85,10 @@ namespace Métier
         public void GrpClientArrive()
         {
             GroupeClient groupeClient = new GroupeClient(count++);
+            Console.WriteLine("Un groupe de client est arrivé");
             maitrehotel.Welcomegroup(groupeClient, WaitingLine);
+            InstalledClient.Add(groupeClient);
+
         }
 
         public void GetCommande(Commande commande)
