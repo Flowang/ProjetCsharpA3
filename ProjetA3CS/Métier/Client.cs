@@ -32,9 +32,13 @@ namespace Métier
             //Orders[2] = new Recette() { Nom = "Boule_Vanille", typeRecette = TypeRecette.Dessert };
 
             Random rnd = new Random();
-            Orders[0] = new Recette() { Nom = Menu.Entrees[rnd.Next(1,11)].Nom, typeRecette = TypeRecette.Entree };
-            Orders[1] = new Recette() { Nom = Menu.Plat[rnd.Next(1, 11)].Nom , typeRecette = TypeRecette.Plat };
-            Orders[2] = new Recette() { Nom = Menu.Desserts[rnd.Next(1, 11)].Nom, typeRecette = TypeRecette.Dessert };
+            Recette entre = Menu.Entrees[rnd.Next(1, 11)];
+            Recette plat = Menu.Entrees[rnd.Next(1, 11)];
+            Recette dessert = Menu.Entrees[rnd.Next(1, 11)];
+
+            Orders[0] = entre;
+            Orders[1] = plat;
+            Orders[2] = dessert;
 
         }
 

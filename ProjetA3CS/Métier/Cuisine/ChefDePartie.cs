@@ -64,11 +64,13 @@ namespace Métier.Cuisine
         {
             foreach(var plat in PlataCuisiner)
             {
-                plat.compteur.Tick();
-                if(plat.compteur.IsOver)
+                if (plat.compteur.IsOver)
                 {
-                    -+Comptoir.AddPlat(plat);
+                    Comptoir.AddPlat(plat);
                 }
+                plat.compteur.Tick();
+                return;
+                
             }
         }
     }
