@@ -33,8 +33,8 @@ namespace Métier
 
             Random rnd = new Random();
             Recette entre = Menu.Entrees[rnd.Next(1, 11)];
-            Recette plat = Menu.Entrees[rnd.Next(1, 11)];
-            Recette dessert = Menu.Entrees[rnd.Next(1, 11)];
+            Recette plat = Menu.Plat[rnd.Next(1, 11)];
+            Recette dessert = Menu.Desserts[rnd.Next(1, 11)];
 
             Orders[0] = entre;
             Orders[1] = plat;

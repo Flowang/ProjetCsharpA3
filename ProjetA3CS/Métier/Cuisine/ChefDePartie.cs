@@ -8,10 +8,17 @@ using Métier.Mobilier_Salle;
 
 namespace Métier.Cuisine
 {
-    public class ChefDePartie : RestaurantElement
+    public enum EtatChePartie
+    {
+        Free, 
+        NotFree,
+    }
+
+    public  class ChefDePartie : RestaurantElement
     {
         Comptoir Comptoir;
         ChefDeCuisine chefdecuisine;
+        
 
         public List<Recette> Entrees; // papier avec marqué les entrées à faire
         public List<Recette> Plats;  
@@ -19,7 +26,8 @@ namespace Métier.Cuisine
 
         List<Plat> PlataCuisiner;
 
-
+        public EtatChePartie Etat { get; set; }
+      
         public ChefDePartie(Comptoir comptoir)
         {
             PlataCuisiner = new List<Plat>();
@@ -62,6 +70,11 @@ namespace Métier.Cuisine
 
         public override void Tick()
         {
+            if(PlataCuisiner.Count == 0)
+            {
+                Etat = EtatChePartie.Free;
+                return;
+            }
             foreach(var plat in PlataCuisiner)
             {
                 if (plat.compteur.IsOver)
@@ -69,6 +82,7 @@ namespace Métier.Cuisine
                     Comptoir.AddPlat(plat);
                 }
                 plat.compteur.Tick();
+                Etat = EtatChePartie.NotFree;
                 return;
                 
             }

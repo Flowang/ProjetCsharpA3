@@ -69,6 +69,7 @@
     <Compile Include="RestoBuilder.cs" />
     <Compile Include="RestoFactory.cs" />
     <Compile Include="Lieux_Salle\Table.cs" />
+    <Compile Include="Stats.cs" />
     <Compile Include="TypeRecette.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

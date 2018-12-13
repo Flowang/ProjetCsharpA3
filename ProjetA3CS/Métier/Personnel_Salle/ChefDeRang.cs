@@ -38,6 +38,14 @@ namespace Métier
         Table TableSelect;
         public override void Tick()
         {
+            for (int i = 0; i < ResponsableClients.Count; i++)
+            {
+                if (ResponsableClients[i].Etat == EtatGroupeClient.Leaving)
+                {
+                    ResponsableClients.RemoveAt(i);
+                    i--;
+                }
+            }
             if(Etat != EtatChefRang.Free)
             {
                 compteur.Tick();

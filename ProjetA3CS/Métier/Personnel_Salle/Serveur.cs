@@ -36,6 +36,14 @@ namespace Métier.Personnel_Salle
 
         public override void Tick()
         {
+            for (int i = 0; i < groupeClients.Count; i++)
+            {
+                if (groupeClients[i].Etat == EtatGroupeClient.Leaving)
+                {
+                    groupeClients.RemoveAt(i);
+                    i--;
+                }
+            }
             base.Tick();
             if(Etat == EtatServeur.Free)
             {
@@ -83,13 +91,12 @@ namespace Métier.Personnel_Salle
                     Etat = EtatServeur.Free;
                 }
             }
-
         }
 
         public void GetPlat()
         {
             Plat plat = comptoir.TakePlat();
-            if(plat == null)
+            if(plat == null || plat.GroupeClient.Etat == EtatGroupeClient.Leaving)
             {
                 return; 
             }
@@ -102,7 +109,7 @@ namespace Métier.Personnel_Salle
 
         public void GivePlat()
         {
-            Console.WriteLine("Le serveur sert des plats a des clients"); 
+            Console.WriteLine("Le serveur sert des plats a des clients : " + PlatEnMain.GroupeClient.CurrentPlat); 
              if(GpcToServe.Etat != EtatGroupeClient.WaitForMeal)
             {
                 return; 
@@ -132,9 +139,15 @@ namespace Métier.Personnel_Salle
             GpcToDishOut.Etat = EtatGroupeClient.WaitForMeal;
             if(GpcToDishOut.CurrentPlat == TypeRecette.Dessert)
             {
-                Console.WriteLine("Dit au revoir au client");
+                Console.WriteLine("Le serveur dit au revoir au client");
                 GpcToDishOut.Etat = EtatGroupeClient.Leaving;
-                GpcToDishOut.TableSelected = null;
+                GpcToDishOut.Tick();
+                groupeClients.Remove(GpcToDishOut);
+
+                GpcToDishOut = null;
+                ToDo = null;
+                Etat = EtatServeur.Free;
+                return;
             }
             GpcToDishOut.CurrentPlat++;
             GpcToDishOut = null;

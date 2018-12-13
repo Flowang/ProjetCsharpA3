@@ -33,6 +33,13 @@ namespace Métier
 
         public override void Tick()
         {
+            if(Etat == EtatGroupeClient.Leaving)
+            {
+                try { TableSelected.grpClient = null;
+                TableSelected = null;}
+                catch { }
+                return;
+            }
             compteur.Tick();
             if (compteur.Time == 0 && Etat == EtatGroupeClient.ChoosingMeal)
             {
@@ -43,7 +50,7 @@ namespace Métier
             if(Etat == EtatGroupeClient.Eating && compteur.Time == 0)
             {
                 Etat = EtatGroupeClient.WaitFordishOut;
-                Console.WriteLine("On fini de manger");
+                Console.WriteLine("Les clients ont fini de manger");
             }
 
             if(Etat == EtatGroupeClient.MealChoosed)
