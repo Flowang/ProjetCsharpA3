@@ -39,16 +39,7 @@ namespace Métier.Personnel_Salle
             base.Tick();
             if(Etat == EtatServeur.Free)
             {
-                if(comptoir.Plats.Count > 0)
-                {
-                    if (comptoir.GetGroupeFirstPlat().Etat != EtatGroupeClient.WaitFordishOut)
-                    {
-                        NewTask(EtatServeur.TakingPlat);
-                        ToDo = GetPlat;
-                        return;
-                    }
-                }
-                foreach(var gpc in groupeClients)
+                foreach (var gpc in groupeClients)
                 {
                     if(gpc.Etat == EtatGroupeClient.WaitFordishOut)
                     {
@@ -58,14 +49,39 @@ namespace Métier.Personnel_Salle
                         return;
                     }
                 }
+
+                if (PlatEnMain != null && GpcToServe != null)
+                {
+                    NewTask(EtatServeur.GivingPlat);
+                    ToDo = GivePlat;
+                    return;
+                }
+                if (comptoir.Plats.Count > 0 && PlatEnMain == null)
+                {
+                    foreach(var plat in comptoir.Plats)
+                    {
+                        if(plat.GroupeClient.Etat == EtatGroupeClient.Eating)
+                        {
+                            continue;
+                        }
+                        if (plat.GroupeClient.Etat != EtatGroupeClient.WaitFordishOut)
+                        {
+                            NewTask(EtatServeur.TakingPlat);
+                            ToDo = GetPlat;
+                            return;
+                        }
+                    }
+                }
             }
 
-
-            compteur.Tick();
-            if(compteur.IsOver)
+            if (compteur != null)
             {
-                ToDo.Invoke();
-                Etat = EtatServeur.Free;
+                compteur.Tick();
+                if (compteur.IsOver)
+                {
+                    ToDo?.Invoke();
+                    Etat = EtatServeur.Free;
+                }
             }
 
         }
@@ -79,40 +95,50 @@ namespace Métier.Personnel_Salle
             }
             GroupeClient groupeclient = plat.GroupeClient;
             GpcToServe = groupeclient;
-            NewTask(EtatServeur.GivingPlat);
-            ToDo = GivePlat;
             PlatEnMain = plat;
+            ToDo = null;
+            Console.WriteLine("Le serveur va chercher des plats au contoir");
         }
 
         public void GivePlat()
         {
-            if(GpcToServe.Etat != EtatGroupeClient.WaitForMeal)
+            Console.WriteLine("Le serveur sert des plats a des clients"); 
+             if(GpcToServe.Etat != EtatGroupeClient.WaitForMeal)
             {
                 return; 
             }
             GpcToServe.Etat = EtatGroupeClient.Eating;
             GpcToServe = PlatEnMain.GroupeClient;
+            GpcToServe.compteur = new Compteur() { Time = 5 };
+            PlatEnMain = null;
+            GpcToServe = null;
+            ToDo = null;
         }
 
         private void NewTask(EtatServeur task)
         {
             Etat = task;
             compteur = new Compteur() { Time = Convert.ToInt32(task) };
-            Debug.WriteLine("Le chef de rang fait " + Etat.ToString());
+            //Console.WriteLine("Le chef de rang fait " + Etat.ToString());
         }
 
         public void Dishout()
         {
+            Console.WriteLine("Le serveur dish out");
             if(GpcToDishOut.Etat != EtatGroupeClient.WaitFordishOut)
             {
                 return;
             }
             GpcToDishOut.Etat = EtatGroupeClient.WaitForMeal;
-            if(Convert.ToInt32(GpcToDishOut.CurrentPlat) == 3)
+            if(GpcToDishOut.CurrentPlat == TypeRecette.Dessert)
             {
+                Console.WriteLine("Dit au revoir au client");
                 GpcToDishOut.Etat = EtatGroupeClient.Leaving;
+                GpcToDishOut.TableSelected = null;
             }
             GpcToDishOut.CurrentPlat++;
+            GpcToDishOut = null;
+            ToDo = null;
         }
     }
 }

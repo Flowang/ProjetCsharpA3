@@ -36,6 +36,7 @@ namespace Métier
                     {
                         carre.ChefRang.AssignTable(groupeClient);
                         PlaceFinded = true;
+                        Console.WriteLine("Une place a été trouvée pour les clients qui viennent d'arriver");
                     }
                 }
             }
