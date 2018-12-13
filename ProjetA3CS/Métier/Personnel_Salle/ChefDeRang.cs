@@ -120,6 +120,7 @@ namespace Métier
             commande.AssociateGroupe = groupeClient;
             GiveCommmandCuisine(commande);
             groupeClient.Etat = EtatGroupeClient.WaitForMeal;
+            //coucou
         }
 
         public void GiveMenu()

@@ -22,8 +22,10 @@ namespace Métier.Personnel_Salle
         public EtatServeur Etat { get; set; } 
         List<GroupeClient> groupeClients;
         GroupeClient GpcToDishOut;
+        GroupeClient GpcToServe;
         Comptoir comptoir;
-        Compteur compteur; 
+        Compteur compteur;
+        Plat PlatEnMain;
 
         public Serveur(Comptoir Comptoir, List<GroupeClient> Clients)
         {
@@ -50,9 +52,9 @@ namespace Métier.Personnel_Salle
                         GpcToDishOut = gpc;
                         NewTask(EtatServeur.DishOut);
                         ToDo = Dishout;
+                        return;
                     }
                 }
-
             }
             if(compteur.IsOver)
             {
@@ -69,7 +71,20 @@ namespace Métier.Personnel_Salle
             {
                 return; 
             }
-            GroupeClient groupeclient = plat.GroupeClient; 
+            GroupeClient groupeclient = plat.GroupeClient;
+            GpcToServe = groupeclient;
+            NewTask(EtatServeur.GivingPlat);
+            ToDo = GivePlat;
+            PlatEnMain = plat;
+        }
+
+        public void GivePlat()
+        {
+            if(GpcToServe.Etat != EtatGroupeClient.WaitForMeal)
+            {
+                return; 
+            }
+            GpcToServe.Etat = EtatGroupeClient.Eating;
         }
 
         private void NewTask(EtatServeur task)
@@ -81,6 +96,10 @@ namespace Métier.Personnel_Salle
 
         public void Dishout()
         {
+            if(GpcToDishOut.Etat != EtatGroupeClient.WaitFordishOut)
+            {
+                return;
+            }
             GpcToDishOut.Etat = EtatGroupeClient.WaitForMeal;
             if(Convert.ToInt32(GpcToDishOut.CurrentPlat) == 3)
             {
@@ -88,6 +107,5 @@ namespace Métier.Personnel_Salle
             }
             GpcToDishOut.CurrentPlat++;
         }
-
     }
 }
