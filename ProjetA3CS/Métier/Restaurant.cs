@@ -24,19 +24,20 @@ namespace Métier
 
         public List<GroupeClient> WaitingLine { get; set; } = new List<GroupeClient>();
 
-        ChefDeCuisine chefdecuisine;
-
         public BlackBoxCuisine blackbox { get; set; }
 
         public Serveur serveur { get; set; }
 
         public List<GroupeClient> InstalledClient { get; set; } = new List<GroupeClient>();
 
+        public ChefDePartie ChefDeparti { get; set; }
+
+        public ChefDeCuisine chefDeCuisine { get; set; }
+
 
         public Restaurant()
         {
             Comptoir = new Comptoir();
-            chefdecuisine = new ChefDeCuisine(Comptoir);
             ChefDeRang chefRang1 = new ChefDeRang(this);
             ChefDeRang chefRang2 = new ChefDeRang(this);
 
@@ -50,7 +51,12 @@ namespace Métier
             ListCarres = new List<Carre>() { carre1, carre2 };
 
             maitrehotel = new MaitreHotel(this, ListCarres);
-            blackbox = new BlackBoxCuisine(this);
+
+            
+
+            ChefDeparti = new ChefDePartie(Comptoir);
+            chefDeCuisine = new ChefDeCuisine(Comptoir, ChefDeparti);
+            //blackbox = new BlackBoxCuisine(this);
             serveur = new Serveur(Comptoir, InstalledClient);
         }
 
@@ -67,9 +73,12 @@ namespace Métier
                     group.Tick();
                 }
             }
-            //chefdecuisine.Tick();
-            blackbox.Tick();
-            serveur.Tick();
+            chefDeCuisine.Tick();
+
+            ChefDeparti.Tick();
+
+            //blackbox.Tick();
+            //serveur.Tick();
         }
 
         public void TickFor(int xTemps) //Appel x time en seconde

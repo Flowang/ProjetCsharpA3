@@ -22,6 +22,12 @@ namespace Métier.Cuisine
 
         public ChefDePartie(Comptoir comptoir)
         {
+            PlataCuisiner = new List<Plat>();
+
+            Entrees = new List<Recette>();
+            Plats = new List<Recette>();
+            Desserts = new List<Recette>();
+
             this.Comptoir = comptoir;
         }
         public void GetCommand(Commande commande)
@@ -63,7 +69,7 @@ namespace Métier.Cuisine
                 plat.compteur.Tick();
                 if(plat.compteur.IsOver)
                 {
-                    Comptoir.AddPlat(plat);
+                    -+Comptoir.AddPlat(plat);
                 }
             }
         }
