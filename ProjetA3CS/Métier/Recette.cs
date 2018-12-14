@@ -11,15 +11,16 @@ namespace Métier
         public string Nom { get; set; }
         public TypeRecette typeRecette { get; set; }
 
-        //Mettre un temps de préparation pour les ticks ?
+        public int TempsPreparation { get; set; }
 
         public Recette()
         {
                 
         }
-        public Recette(string nom)
+        public Recette(string nom, int tempspreparation)
         {
-            this.Nom = nom;       
+            this.Nom = nom;
+            this.TempsPreparation = tempspreparation;
         }
             
     }

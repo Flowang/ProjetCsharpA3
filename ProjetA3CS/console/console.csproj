@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{AC778B3C-46F3-4F8E-B409-372F25DE3D4E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Métier</RootNamespace>
-    <AssemblyName>Métier</AssemblyName>
+    <ProjectGuid>{5454CB0C-486D-4201-9F69-A751FCA536C7}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>console</RootNamespace>
+    <AssemblyName>console</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,6 +24,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -41,36 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlackBoxCuisine.cs" />
-    <Compile Include="Commande.cs" />
-    <Compile Include="Compteur.cs" />
-    <Compile Include="Cuisine\ChefDeCuisine.cs" />
-    <Compile Include="Cuisine\ChefDePartie.cs" />
-    <Compile Include="Cuisine\CommisDeCuisine.cs" />
-    <Compile Include="EtatGroupeClient.cs" />
-    <Compile Include="Ingredient.cs" />
-    <Compile Include="Lieux_Salle\Carre.cs" />
-    <Compile Include="Menu.cs" />
-    <Compile Include="Mobilier_Salle\Comptoir.cs" />
-    <Compile Include="Mobilier_Salle\WashingMachine.cs" />
-    <Compile Include="Personnel_Salle\ChefDeRang.cs" />
-    <Compile Include="Client.cs" />
-    <Compile Include="Commis.cs" />
-    <Compile Include="GroupeClient.cs" />
-    <Compile Include="Personnel_Salle\Commis.cs" />
-    <Compile Include="Personnel_Salle\MaitreHotel.cs" />
-    <Compile Include="Personnel.cs" />
-    <Compile Include="Personnel_Salle\Serveur.cs" />
-    <Compile Include="Plat.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Lieux_Salle\Rang.cs" />
-    <Compile Include="Recette.cs" />
-    <Compile Include="Restaurant.cs" />
-    <Compile Include="RestoBuilder.cs" />
-    <Compile Include="RestoFactory.cs" />
-    <Compile Include="Lieux_Salle\Table.cs" />
-    <Compile Include="Stats.cs" />
-    <Compile Include="TypeRecette.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Métier\Métier.csproj">
+      <Project>{ac778b3c-46f3-4f8e-b409-372f25de3d4e}</Project>
+      <Name>Métier</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

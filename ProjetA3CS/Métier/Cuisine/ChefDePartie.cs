@@ -8,18 +8,34 @@ using Métier.Mobilier_Salle;
 
 namespace Métier.Cuisine
 {
-    public class ChefDePartie : RestaurantElement
+    public enum EtatChePartie
+    {
+        Free, 
+        NotFree,
+    }
+
+    public  class ChefDePartie : RestaurantElement
     {
         Comptoir Comptoir;
         ChefDeCuisine chefdecuisine;
+        
 
-        public List<Recette> Entrees; //Bout de papier
-        public List<Recette> Plats; //Assiette avec le plat pref de Emilien 
+        public List<Recette> Entrees; // papier avec marqué les entrées à faire
+        public List<Recette> Plats;  
         public List<Recette> Desserts;
 
+        List<Plat> PlataCuisiner;
 
+        public EtatChePartie Etat { get; set; }
+      
         public ChefDePartie(Comptoir comptoir)
         {
+            PlataCuisiner = new List<Plat>();
+
+            Entrees = new List<Recette>();
+            Plats = new List<Recette>();
+            Desserts = new List<Recette>();
+
             this.Comptoir = comptoir;
         }
         public void GetCommand(Commande commande)
@@ -28,30 +44,48 @@ namespace Métier.Cuisine
             for(int i = 0; i <= 3; i++)
             {
                if(commande.recettes[i].typeRecette == TypeRecette.Entree)
-                    {
-                    Entrees.Add(commande.recettes[i]);
-                    }
+                {
+                    Entrees.Add(commande.recettes[i]);// On traite la nouvelle commande en séparant en trois les recettes liées à cette commande
+                    Plat entree = new Plat(Entrees, commande.AssociateGroupe, new Compteur() { Time = commande.recettes[i].TempsPreparation });
+                    PlataCuisiner.Add(entree);
+                }
                if (commande.recettes[i].typeRecette == TypeRecette.Plat)
                     {
+                    Plat plat = new Plat(Plats, commande.AssociateGroupe, new Compteur() { Time = commande.recettes[i].TempsPreparation });
                     Plats.Add(commande.recettes[i]);
+                    PlataCuisiner.Add(plat);
                 }
-               if (commande.recettes[i].typeRecette == TypeRecette.Dessert)
+                if (commande.recettes[i].typeRecette == TypeRecette.Dessert)
                     {
-                     Desserts.Add(commande.recettes[i]);
-                    }
+                    Plat dessert = new Plat(Desserts, commande.AssociateGroupe, new Compteur() { Time = commande.recettes[i].TempsPreparation });
+                    Desserts.Add(commande.recettes[i]);
+                    PlataCuisiner.Add(dessert);
+                }
             }
-            Plat entree = new Plat(Entrees, commande.AssociateGroupe);
-            Plat plat = new Plat(Plats, commande.AssociateGroupe);
-            Plat dessert = new Plat(Desserts, commande.AssociateGroupe);
+            // On prépare les entrées notées sur le papier
+             
 
-            Comptoir.AddPlat(entree);
-            Comptoir.AddPlat(plat);
-            Comptoir.AddPlat(dessert);
+             // on envoit les entrées préparés au comptoir
         }
 
         public override void Tick()
         {
-
+            if(PlataCuisiner.Count == 0)
+            {
+                Etat = EtatChePartie.Free;
+                return;
+            }
+            foreach(var plat in PlataCuisiner)
+            {
+                if (plat.compteur.IsOver)
+                {
+                    Comptoir.AddPlat(plat);
+                }
+                plat.compteur.Tick();
+                Etat = EtatChePartie.NotFree;
+                return;
+                
+            }
         }
     }
 }

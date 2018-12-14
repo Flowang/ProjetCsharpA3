@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Métier
 {
-    public enum TypeRecette
+    public enum TypeRecette : int
     {
-        Entree,
-        Plat,
-        Dessert,
+        Entree=0,
+        Plat=1,
+        Dessert=2,
+
     }
 }

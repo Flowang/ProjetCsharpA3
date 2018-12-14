@@ -24,7 +24,7 @@ namespace ProjetA3CS
             ///
             Restaurant r = new Restaurant();
             r.GrpClientArrive();
-            r.TickFor(20);
+            r.TickFor(1000);
         }
     }
 }

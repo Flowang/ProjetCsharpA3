@@ -38,13 +38,21 @@ namespace Métier
         Table TableSelect;
         public override void Tick()
         {
+            for (int i = 0; i < ResponsableClients.Count; i++)
+            {
+                if (ResponsableClients[i].Etat == EtatGroupeClient.Leaving)
+                {
+                    ResponsableClients.RemoveAt(i);
+                    i--;
+                }
+            }
             if(Etat != EtatChefRang.Free)
             {
                 compteur.Tick();
                 if(compteur.IsOver)
                 {
                     Etat = EtatChefRang.Free;
-                    Debug.WriteLine("Le chef de rang est libre !");
+                    Console.WriteLine("Le chef de rang est libre !");
                     return; 
                 }
                 return;
@@ -120,20 +128,22 @@ namespace Métier
             commande.AssociateGroupe = groupeClient;
             GiveCommmandCuisine(commande);
             groupeClient.Etat = EtatGroupeClient.WaitForMeal;
+            //coucou
         }
 
         public void GiveMenu()
         {
             groupeSelected.HaveMenu = true;
             ResponsableClients.Add(groupeSelected);
-            groupeSelected = null; 
+            groupeSelected = null;
+            Console.WriteLine("Un menu a été donné au groupe de client");
         }
 
         private void NewTask(EtatChefRang task)
         {
             Etat = task;
             compteur = new Compteur() { Time = Convert.ToInt32(task) };
-            Debug.WriteLine("Le chef de rang fait " + Etat.ToString());
+            Console.WriteLine("Le chef de rang fait " + Etat.ToString());
         }
 
     }
