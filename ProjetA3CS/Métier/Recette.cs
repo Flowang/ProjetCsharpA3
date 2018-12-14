@@ -11,6 +11,8 @@ namespace Métier
         public string Nom { get; set; }
         public TypeRecette typeRecette { get; set; }
 
+        //Mettre un temps de préparation pour les ticks ?
+
         public Recette()
         {
                 
